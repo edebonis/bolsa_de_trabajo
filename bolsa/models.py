@@ -25,9 +25,15 @@ class Oportunidad(models.Model):
     class Meta:
         verbose_name_plural = "Oportunidades"
 
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email_confirmed = models.BooleanField(default=False)
+    first_name = models.CharField(max_length=30, null=True, blank=True, help_text='Optional.')
+    last_name = models.CharField(max_length=30, null=True, blank=True, help_text='Optional.')
+    email = models.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
+    # birth_date = models.DateField(help_text='Required. Format: YYYY-MM-DD')
+    is_staff = User.is_staff
 
 
 @receiver(post_save, sender=User)
