@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from datetime import date
 
 
 class Tipo(models.Model):
@@ -18,6 +19,7 @@ class Oportunidad(models.Model):
     visible = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     tipo = models.ForeignKey(Tipo, on_delete=models.CASCADE)
+    fecha = models.DateField(default=date.today())
 
     def __str__(self):
         return '{} - {} - {}'.format(self.id, self.tipo, self.user)
@@ -26,14 +28,18 @@ class Oportunidad(models.Model):
         verbose_name_plural = "Oportunidades"
 
 
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+class Profile(User):
+    # user = models.OneToOneField(User, on_delete=models.CASCADE)
     email_confirmed = models.BooleanField(default=False)
-    first_name = models.CharField(max_length=30, null=True, blank=True, help_text='Optional.')
-    last_name = models.CharField(max_length=30, null=True, blank=True, help_text='Optional.')
-    email = models.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
-    # birth_date = models.DateField(help_text='Required. Format: YYYY-MM-DD')
+    # first_name = models.CharField(max_length=30, null=False, blank=False, help_text='Campo Obligatorio')
+    # last_name = models.CharField(max_length=30, null=False, blank=False, help_text='Campo Obligatorio')
     is_staff = User.is_staff
+    es_alumno = models.BooleanField(default=True, null=False)
+    es_oferente = models.BooleanField(default=False, null=False)
+    telefono = models.CharField(max_length=30, null=False, blank=False, help_text='Campo obligatorio')
+
+    def __str__(self):
+        return '{} '.format(self.email)
 
 
 @receiver(post_save, sender=User)

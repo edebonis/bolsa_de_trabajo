@@ -11,3 +11,8 @@ p {
   font-family: verdana;
   font-size: 20px;
 }
+
+form{
+  font-family: Verdana;
+  align-self: center;
+}

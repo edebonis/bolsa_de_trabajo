@@ -5,13 +5,22 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from bolsa.forms import SignUpForm
+from bolsa.models import Oportunidad
 from bolsa.tokens import account_activation_token
 from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import render, redirect
 
+
 @login_required
 def home(request):
     return render(request, 'home.html')
+
+
+@login_required
+def inicio(request):
+    context = {'Oportunidad': Oportunidad.objects.all}
+    return render(request, 'inicio.html', context)
+
 
 def account_activation_sent(request):
     if request.method == 'POST':
@@ -45,6 +54,8 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.profile.email_confirmed = True
+        user.profile.es_alumno = False
+        user.profile.es_oferente = True
         user.save()
         login(request, user)
         return redirect('home')

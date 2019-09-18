@@ -8,10 +8,17 @@ class SignUpForm(UserCreationForm):
     first_name = Profile.first_name
     last_name = Profile.last_name
     email = Profile.email
-    is_staff = Profile.is_staff
+    telefono = Profile.telefono
+    # is_staff = Profile.is_staff
     # birth_date = Profile.birth_date
 
     class Meta:
-        model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'is_staff')
+        model = Profile
+        fields = {'username':'nombre_de_usuario',
+                  'first_name': 'primer_nombre',
+                  'last_name':'apellido',
+                  'email':'email',
+                  'password1':'password1',
+                  'password2':'password2',
+                  'telefono':'telefono'}
 

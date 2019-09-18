@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for o in Oportunidad %}
+        {% if o.visible  %}
+            <h1>{{ o.titulo }}</h1>
+            <p align="center">{{ o.descripcion }}</p>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
