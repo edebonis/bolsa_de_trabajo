@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from datetime import date
+from django.utils.timezone import now
 
 
 class Tipo(models.Model):
@@ -19,7 +19,7 @@ class Oportunidad(models.Model):
     visible = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     tipo = models.ForeignKey(Tipo, on_delete=models.CASCADE)
-    fecha = models.DateField(default=date.today())
+    fecha = models.DateField(default=now)
 
     def __str__(self):
         return '{} - {} - {}'.format(self.id, self.tipo, self.user)
@@ -39,7 +39,7 @@ class Profile(User):
     telefono = models.CharField(max_length=30, null=False, blank=False, help_text='Campo obligatorio')
 
     def __str__(self):
-        return '{} '.format(self.email)
+        return '{} - {}'.format(self.first_name, self.email)
 
 
 @receiver(post_save, sender=User)

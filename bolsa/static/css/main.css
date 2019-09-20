@@ -16,3 +16,8 @@ form{
   font-family: Verdana;
   align-self: center;
 }
+
+input {
+  width: 50%;
+  color: blue;
+}

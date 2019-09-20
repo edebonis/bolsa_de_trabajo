@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 {% block content %}
-  <h4 align="center">Bienvenido, {{ user.get_full_name }} <small>({{ user.username }})</small></h4>
-
+  <h4 class="text-center">Bienvenido, {{ user.get_full_name }} <small>({{ user.username }})</small></h4>
+{% if Usuario.es_alumno %}
+    <div>ALUMNO</div>
+    {% else %}
+    <div>OFERENTE</div>
+    <a href="{% url 'nueva_oportunidad' %}?next=/">Ingresar oportunidad</a>
+    {% endif %}
     {% for o in Oportunidad %}
         {% if o.visible  %}
             <h1>{{ o.titulo }}</h1>
-            <p align="center">{{ o.descripcion }}</p>
+            <p>{{ o.descripcion }}</p>
         {% endif %}
     {% endfor %}
 
