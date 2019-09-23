@@ -14,12 +14,12 @@ class Tipo(models.Model):
 
 
 class Oportunidad(models.Model):
-    titulo = models.CharField(max_length=100)
-    descripcion = models.TextField(max_length=5000)
-    visible = models.BooleanField(default=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    tipo = models.ForeignKey(Tipo, on_delete=models.CASCADE)
-    fecha = models.DateField(default=now)
+    titulo = models.CharField(max_length=100, null=True, blank=True)
+    descripcion = models.TextField(max_length=5000, null=True, blank=True)
+    visible = models.BooleanField(default=False, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    tipo = models.ForeignKey(Tipo, on_delete=models.CASCADE, null=True, blank=True)
+    fecha = models.DateField(default=now, null=True, blank=True)
 
     def __str__(self):
         return '{} - {} - {}'.format(self.id, self.tipo, self.user)

@@ -21,7 +21,7 @@ class SignUpForm(UserCreationForm):
                   'telefono':'telefono'}
 
 
-class NuevaOportuindad(forms.ModelForm):
+class NuevaOportunidad(forms.ModelForm):
     class Meta:
         model = Oportunidad
         classmethod = 'POST'
@@ -30,17 +30,19 @@ class NuevaOportuindad(forms.ModelForm):
             'descripcion',
             'titulo',
             'tipo',
-            'visible'
+            'visible',
+            'fecha'
         ]
         labels = {
             'user':'Usuario',
             'descripcion':'Descripción',
             'titulo':'Título',
             'tipo':'Tipo',
-            'visible':'Visible'
+            'visible':'Visible',
+            'fecha':'Fecha',
         }
 
         def __init__(self, *args, **kwargs):
-            super(NuevaOportuindad, self).__init__(*args, **kwargs)
+            super(NuevaOportunidad, self).__init__(*args, **kwargs)
             for visible in self.visible_fields():
                 visible.field.widget.attrs['class'] = 'form-control'

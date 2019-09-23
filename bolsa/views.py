@@ -4,11 +4,12 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
-from bolsa.forms import SignUpForm, NuevaOportuindad
+from bolsa.forms import SignUpForm, NuevaOportunidad
 from bolsa.models import Oportunidad, Profile
 from bolsa.tokens import account_activation_token
 from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import render, redirect
+from django.utils.timezone import now
 
 
 
@@ -22,36 +23,25 @@ def inicio(request):
 @login_required
 def nueva(request):
     if request.method == "POST":
-        print("NUEVA")
-        form = NuevaOportuindad(request.POST)
+        form = NuevaOportunidad(request.POST)
         if form.is_valid():
+            print("NUEVA")
             try:
-                form.user = User.pk
-                form.visible = False
-                form.save()
+                preform = form.save(commit=False)
+                preform.user = request.user
+                preform.save()
                 print("Guardado")
                 return redirect('/')
             except:
                 print("Error")
                 pass
     else:
-        form = NuevaOportuindad()
+        form = NuevaOportunidad()
 
     return render(request, 'nueva_oportunidad.html', {'form': form})
 
 
-def nuevo_estudiante(request):
-    if request.method == "POST":
-        form = NuevoEstudiante(request.POST)
-        if form.is_valid():
-            try:
-                form.save()
-                return redirect('/nuevo_estudiante')
-            except:
-                pass
-    else:
-        form = NuevoEstudiante()
-    return render(request, 'alcal/blue/nuevo_estudiante.html', {'form': form})
+
 
 def account_activation_sent(request):
     if request.method == 'POST':
