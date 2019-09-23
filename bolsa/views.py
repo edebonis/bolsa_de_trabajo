@@ -86,8 +86,11 @@ def activate(request, uidb64, token):
 
 def signup(request):
     if request.method == 'POST':
+        print("signup")
         form = SignUpForm(request.POST)
+
         if form.is_valid():
+            print("form is valid")
             user = form.save(commit=False)
             user.is_active = False
             user.save()

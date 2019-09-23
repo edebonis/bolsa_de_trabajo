@@ -3,7 +3,7 @@
 {% block content %}
   <h2 class="text-center">Crear Cuenta</h2>
     <div >
-    <form method="post" class="text-center" action="/inicio" >
+    <form method="post" class="text-center" action="" >
         {% csrf_token %}
 {#-------------------------------------#}
 
@@ -38,8 +38,8 @@
     </div>
 
 {#-------------------------------------#}
-        <button type="submit" class="btn btn-primary">Crear</button>
-
+        <button type="submit" class="btn btn-primary col-md-2">Crear</button>
+        <input class="btn btn-primary col-md-2" type="submit" value="Logout" />
      </form>
     </div>
 {% endblock %}

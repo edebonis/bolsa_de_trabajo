@@ -30,12 +30,12 @@ class Oportunidad(models.Model):
 
 class Profile(User):
     # user = models.OneToOneField(User, on_delete=models.CASCADE)
-    email_confirmed = models.BooleanField(default=False)
+    email_confirmed = models.BooleanField(default=False, blank=True)
     # first_name = models.CharField(max_length=30, null=False, blank=False, help_text='Campo Obligatorio')
     # last_name = models.CharField(max_length=30, null=False, blank=False, help_text='Campo Obligatorio')
     is_staff = User.is_staff
-    es_alumno = models.BooleanField(default=True, null=False)
-    es_oferente = models.BooleanField(default=False, null=False)
+    es_alumno = models.BooleanField(default=True, null=False, blank=True)
+    es_oferente = models.BooleanField(default=False, null=False, blank=True)
     telefono = models.CharField(max_length=30, null=False, blank=False, help_text='Campo obligatorio')
 
     def __str__(self):
