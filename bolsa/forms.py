@@ -31,9 +31,13 @@ class NuevaOportunidad(forms.ModelForm):
             'titulo',
             'tipo',
             'visible',
-            'fecha'
+            'fecha',
+            'empresa',
+            'puesto'
         ]
         labels = {
+            'empresa':'Empresa',
+            'puesto':'Puesto',
             'user':'Usuario',
             'descripcion':'Descripción',
             'titulo':'Título',

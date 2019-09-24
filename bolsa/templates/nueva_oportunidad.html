@@ -18,6 +18,16 @@
                 {{ form.tipo|as_crispy_field }}
             </div>
         </div>
+         <div class="form-row justify-content-center">
+            <div class="form-group col-md-4 mb-0">
+                {{ form.empresa|as_crispy_field }}
+            </div>
+        </div>
+         <div class="form-row justify-content-center">
+            <div class="form-group col-md-4 mb-0">
+                {{ form.puesto|as_crispy_field }}
+            </div>
+        </div>
         <button type="submit" class="btn btn-primary col-md-4">Guardar</button>
     </form>
 {% endblock %}

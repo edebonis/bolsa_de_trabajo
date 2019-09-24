@@ -9,15 +9,18 @@ from bolsa.models import Oportunidad, Profile
 from bolsa.tokens import account_activation_token
 from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import render, redirect
-from django.utils.timezone import now
 
 
 
 @login_required
 def inicio(request):
-    context = {'Oportunidad': Oportunidad.objects.all,
-               'Usuario': User.objects.all}
-    return render(request, 'inicio.html', context)
+    opor = []
+    oportunidades = Oportunidad.objects.all()
+    for i in range(int(len(oportunidades) / 2 + 0.5)):
+        opor.append(oportunidades[slice(2 * i, 2 * i + 2)])
+    print(opor)
+    return render(request, 'inicio.html', {'oportunidades': opor, 'Usuario': Profile.objects.all})
+
 
 
 @login_required
@@ -107,3 +110,5 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
+
+

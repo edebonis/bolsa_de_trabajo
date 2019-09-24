@@ -14,6 +14,9 @@ class Tipo(models.Model):
 
 
 class Oportunidad(models.Model):
+    empresa = models.CharField(max_length=100, null=True, blank=True)
+    puesto = models.CharField(max_length=100, null=True, blank=True)
+
     titulo = models.CharField(max_length=100, null=True, blank=True)
     descripcion = models.TextField(max_length=5000, null=True, blank=True)
     visible = models.BooleanField(default=False, blank=True)
