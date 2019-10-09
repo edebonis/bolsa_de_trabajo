@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+{% block head %}
+    {% include 'head.html' %}
+{% endblock %}
+
+  <body>
+    <div class="panel-heading container-fluid">
+      <h1 class="fc-event-title panel-title">Bolsa de trabajo
+      {% if user.is_authenticated %}
+
+              <form class="form-inline" action="{% url 'logout' %}?next=/">
+                <input class="btn btn-primary col-md-2 text-center" type="submit" value="Salir" />
+              </form>
+          </h1>
+          </div>
+      {% else %}
+          <div class="center-block">
+            <a href="{% url 'login' %}?next=/">login</a> / <a href="{% url 'signup' %}">crear cuenta</a>
+          </div>
+      {% endif %}
+
+    </header>
+
+    <main class="container text-center">
+      {% block content %}
+      {% endblock %}
+    </main>
+  </body>
+</html>

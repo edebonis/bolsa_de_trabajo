@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2 class="text-center">Iniciar sesión</h2>
+  {% if form.errors %}
+    <p style="color: red">Su nombre de usuario y contraseña no coinciden, por favor intente nuevamente.</p>
+  {% endif %}
+  <form class="text-center" method="post" action="">
+      {% csrf_token %}
+
+  {% if field.es_alumno %}
+    <input type="hidden" name="next" value="/" />
+  {% else %}
+      <input type="hidden" name="next" value="{{ next }}" />
+  {% endif %}
+
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}<br>
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+        {% if field.help_text %}
+          <p><small style="color: grey">{{ field.help_text }}</small></p>
+        {% endif %}
+      </p>
+    {% endfor %}
+    <div>
+        <button class="btn btn-primary col-md-2" type="submit">Ingresar</button>
+    </div>
+    <div >
+        <a href="{% url 'signup' %}">¿Sos nuevo? Creá una cuenta.</a>
+    </div>
+  </form>
+{% endblock %}
