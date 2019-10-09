@@ -16,10 +16,13 @@ from django.shortcuts import render, redirect
 def inicio(request):
     opor = []
     oportunidades = Oportunidad.objects.all()
+    usuario = request.user
+    perfil = Profile.objects.get(user_ptr_id=usuario.pk)
+    print(perfil.es_oferente)
     for i in range(int(len(oportunidades) / 2 + 0.5)):
         opor.append(oportunidades[slice(2 * i, 2 * i + 2)])
-    print(opor)
-    return render(request, 'inicio.html', {'oportunidades': opor, 'Usuario': Profile.objects.all})
+    # print(opor)
+    return render(request, 'inicio.html', {'oportunidades': opor, 'Usuario': perfil})
 
 
 

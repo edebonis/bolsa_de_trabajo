@@ -1,0 +1,62 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+{% load django_template_maths %}
+{% block head %}
+    {% include 'alcal/blue/head.html' %}
+{% endblock %}
+
+
+
+<body class="fixed-left">
+
+<!-- Begin page -->
+<div id="wrapper">
+
+    {% block topbar %}
+        {% include 'alcal/blue/topbar.html' %}
+    {% endblock %}
+
+    {% block leftsidebar %}
+        {% include 'alcal/blue/leftsidebar.html' %}
+    {% endblock %}
+
+
+    <footer class="footer text-right">
+        2015 © Moltran.
+    </footer>
+<!-- INICIO RIGHT-->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content" align="center">
+            <div class="col-xl-6" style="width: 50%" align="left">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Nuevo Padre</h3>
+                    </div>
+                    <div class="panel-body">
+                            <form action="#" method="post" class="form-horizontal">
+
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    {{ form }}
+                                </div>
+
+                               <button type="submit" class="btn btn-primary">Guardar</button>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- END wrapper -->
+
+{% block scripts_template %}
+    {% include 'alcal/blue/scripts_template.html' %}
+    <script src="{% static 'assets/select2/select2.min.js' %}" type="text/javascript"></script>
+{% endblock %}
+
+</body>
+</html>

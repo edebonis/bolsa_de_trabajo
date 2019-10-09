@@ -1,0 +1,78 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+{% load django_template_maths %}
+{% block head %}
+    {% include 'alcal/blue/head.html' %}
+{% endblock %}
+
+
+
+<body class="fixed-left">
+
+<!-- Begin page -->
+<div id="wrapper">
+
+    {% block topbar %}
+        {% include 'alcal/blue/topbar.html' %}
+    {% endblock %}
+
+    {% block leftsidebar %}
+        {% include 'alcal/blue/leftsidebar.html' %}
+    {% endblock %}
+    <script src="{% static 'smart-selects/admin/js/chainedfk.js' %}"></script>
+    <script src="{% static 'smart-selects/admin/js/chainedm2m.js' %}"></script>
+    <footer class="footer text-right">
+        2015 © Moltran.
+    </footer>
+</div> <!-- content -->
+
+<!-- ============================================================== -->
+<!-- End Right content here -->
+<!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content" align="center">
+            <div class="col-xl-6" style="width: 50%" align="left">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Nueva Nota</h3>
+                    </div>
+                    <div class="panel-body">
+                            <form action="#" method="post" class="form-horizontal">
+
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="curso">Curso</label>
+                                    {{ form.curso }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="curso">Estudiante</label>
+                                {{ form.estudiante }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="curso">Materia</label>
+                                {{ form.materia }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="curso">Número</label>
+                                {{ form.nota }}
+                                </div>
+                               <button type="submit" class="btn btn-primary">Guardar</button>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% block scripts_template %}
+    {% include 'alcal/blue/scripts_template.html' %}
+{% endblock %}
+
+</body>
+</html>

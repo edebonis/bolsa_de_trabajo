@@ -1,0 +1,23 @@
+{% load static %}
+{% block buscar_curso %}
+    <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><h3 class="panel-title">Cursos</h3></div>
+                            <div class="panel-body">
+
+                                <form method="post" class="form-horizontal">{% csrf_token %}
+                                      <div class="col-sm-11">
+                                            <select class="select2" data-placeholder="Elegir..." >
+                                                <option value="#">&nbsp;</option>
+                                               
+                                            </select>
+                                        </div>
+                                    <button type="submit" class="btn waves-effect waves-light btn-primary">Buscar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div> <!-- panel-body -->
+    </div> <!-- panel -->
+
+{% endblock %}

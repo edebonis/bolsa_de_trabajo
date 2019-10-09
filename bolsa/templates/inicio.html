@@ -4,32 +4,33 @@
   <h4 class="text-center">Bienvenido, {{ user.get_full_name }} <small>({{ user.username }}) {{ user.usernamoe }}</small></h4>
     {% if Usuario.es_oferente %}
         <a href="{% url 'nueva_oportunidad' %}?next=/">Ingresar oportunidad</a>
+    {% else %}
+        {% for o in oportunidades %}
+            {% if o.0.visible  %}
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="card mb-3" >
+                      <div class="card-body">
+                        <h5 class="card-title">{{o.0.titulo}}</h5>
+                        <p class="card-text">{{o.0.descripcion}}</p>
+                        <a href="#" class="btn btn-primary">Ver</a>
+                      </div>
+                    </div>
+                  </div>
+            {% endif %}
+            {% if o.1.visible %}
+                  <div class="col-sm-6">
+                    <div class="card mb-3">
+                      <div class="card-body">
+                        <h5 class="card-title">{{o.1.titulo}}</h5>
+                        <p class="card-text">{{o.1.descripcion}}</p>
+                        <a href="#" class="btn btn-primary">Ver</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            {% endif %}
+        {% endfor %}
     {% endif %}
-    {% for o in oportunidades %}
-        {% if o.0.visible  %}
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="card mb-3" >
-                  <div class="card-body">
-                    <h5 class="card-title">{{o.0.titulo}}</h5>
-                    <p class="card-text">{{o.0.descripcion}}</p>
-                    <a href="#" class="btn btn-primary">Ver</a>
-                  </div>
-                </div>
-              </div>
-        {% endif %}
-        {% if o.1.visible %}
-              <div class="col-sm-6">
-                <div class="card mb-3">
-                  <div class="card-body">
-                    <h5 class="card-title">{{o.1.titulo}}</h5>
-                    <p class="card-text">{{o.1.descripcion}}</p>
-                    <a href="#" class="btn btn-primary">Ver</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-        {% endif %}
-    {% endfor %}
 
 {% endblock %}
