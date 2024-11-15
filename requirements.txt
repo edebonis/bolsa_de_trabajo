@@ -1,6 +1,6 @@
 appdirs==1.4.0
 beautifulsoup4==4.8.0
-Django==2.2.24
+Django==4.2.16
 django-bootstrap4==1.0.1
 django-crispy-forms==1.7.2
 packaging==16.8
